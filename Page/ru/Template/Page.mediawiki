@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta charset="utf-8" />
+        {{#if: {{{favicon|}}}|
+        <link rel="icon" href="{{{favicon}}}" type="image/icon" />
+        }}
+        {{{css}}}
+        <title>{{{project_name}}} | {{SUBPAGENAME}}</title>
+    </head>
+    <body>
+        <header>
+            <div id="pagename">
+                {{SUBPAGENAME}}
+            </div>
+            {{{html_header}}}
+            {{#if: {{{user_settings_url}}}|
+            <div id="review-access">
+                <a href="{{{user_settings_url}}}">Review access</a>
+            </div>
+            }}
+        </header>
+        <nav>
+            <ul id="navigation-bar">
+                {{breadcrumbs}}
+            </ul>
+            <ul id="navigation-bar" class="right">
+                {{#if: {{{has_source|}}}|
+                <li>
+                    {{#if: {{{display_name|}}}|
+                    <a href="/edit/{{urlencode:{{FULLPAGENAME}}}}">
+                        {{#if: {{{does_exist|}}}|Edit Page|Create Page}}
+                        {{#if: {{{errors|}}}|
+                            <span class="badge" title="There were {{{errors}}} problems while rendering this page">{{{errors}}}</span>
+                        }}
+                    </a>
+                    |
+                    {{#if: {{{does_exist|}}}|
+                        <a href="/{{urlencode:{{FULLPAGENAME}}}}.mediawiki">
+                        View Source
+                        {{#if: {{{errors|}}}|
+                            <span class="badge" title="There were {{{errors}}} problems while rendering this page">{{{errors}}}</span>
+                        }}
+                        </a>
+                    }}
+                    }}
+                </li>
+                }}
+                {{#if: {{{display_name|}}}|
+                    {{#if: {{{create_page_name|}}}|
+                    <li>
+                        <a href="/edit/{{urlencode:{{{create_page_name}}}}}">Create Page</a>
+                    </li>
+                }}
+                }}
+                {{#if: {{{history_url|}}}|
+                <li>
+                    <a href="{{{history_url}}}">View History</a>
+                </li>
+                }}
+                {{#if: {{{display_name|}}}|
+                <li>
+                    <a href="/user/logout?location={{urlencode:{{FULLPAGENAME}}}}">Logout ({{{display_name}}})</a>
+                </li>
+                |
+                <li>
+                    <a href="/user/login?location={{urlencode:{{FULLPAGENAME}}}}">Login</a>
+                </li>
+                }}
+            </ul>
+        </nav>
+        {{#if: {{{has_search|}}}|
+        <div id="search">
+            <form action="/search" target="_new">
+                {{#if: {{{language|}}}|
+                <input type="hidden" name="language" value="{{{language}}}" />
+                }}
+                <input type="text" autocomplete="off" name="query" value="" placeholder="Search wiki" />
+                <div id="search-submit">
+                    <input type="submit" value="" />
+                    <div></div>
+                </div>
+            </form>
+        </div>
+        }}
+        <main>
+            <div id="language-bar">
+                <ul>
+                    {{language}}
+                </ul>
+            </div>
+            {{content}}
+            <div id="content-footer">
+                {{footer}}
+            </div>
+
+            {{{javascript}}}
+        </main>
+        <footer>
+            <div id="content-bottom-links">
+                {{{html_footer}}}
+                <a href="https://github.com/TrueBrain/TrueWiki">Powered by TrueWiki</a>
+            </div>
+            <div id="content-bottom-copyright">
+                Content is available under <a href="/License">{{{license}}}</a> aaaaaaaaaaaaaaaaa
+            </div>
+        </footer>
+    </body>
+</html>
