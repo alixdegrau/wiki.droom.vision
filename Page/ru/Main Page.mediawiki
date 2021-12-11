@@ -1,1 +1,3 @@
-[[ru/Галерея/Main Page]]
+* [[ru/Галерея/Main Page]]
+* [[ru/Мемы/Main Page]]
+* [[ru/Пони/Main Page]]
